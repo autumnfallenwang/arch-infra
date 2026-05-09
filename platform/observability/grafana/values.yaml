@@ -1,0 +1,28 @@
+persistence:
+  enabled: true
+  size: 5Gi
+  storageClassName: local-path
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Loki
+        type: loki
+        url: http://loki.observability.svc.cluster.local:3100
+        access: proxy
+        isDefault: true
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    memory: 512Mi
+
+service:
+  type: ClusterIP
+
+# Default admin user is "admin"; password auto-generated, in secret `grafana`.
+# Retrieve with:
+#   kubectl -n observability get secret grafana -o jsonpath='{.data.admin-password}' | base64 -d
