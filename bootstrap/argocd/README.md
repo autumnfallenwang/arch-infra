@@ -11,8 +11,11 @@ The only manifests applied by hand. After this, Argo CD takes over and manages e
 ## Apply
 
 ```sh
-kubectl apply -k bootstrap/argocd/
+kubectl apply -k bootstrap/argocd/ --server-side --force-conflicts
 ```
+
+`--server-side` is required: Argo CD's CRDs exceed the 262144-byte annotation
+limit used by client-side apply.
 
 ## Upgrade Argo CD
 
