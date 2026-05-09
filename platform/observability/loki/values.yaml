@@ -65,3 +65,12 @@ minio:
   enabled: false
 gateway:
   enabled: false
+
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  paths:
+    singleBinary:
+      - /
+  hosts:
+    - loki.arch.local
