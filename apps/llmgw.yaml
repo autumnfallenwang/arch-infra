@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: llmgw
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/autumnfallenwang/llm-gateway.git
+    targetRevision: main
+    path: deploy/chart
+    helm:
+      releaseName: llmgw
+      valueFiles:
+        - values.yaml
+      # GHA workflow rewrites image.tag to a commit SHA on every successful main build.
+      # Initial "latest" matches the chart default; the package doesn't exist in GHCR
+      # until the first build completes — expect ImagePullBackOff briefly on first sync.
+      parameters:
+        - name: image.tag
+          value: "latest"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: llmgw
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
