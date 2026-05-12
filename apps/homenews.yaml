@@ -23,9 +23,9 @@ spec:
       # public, so expect ImagePullBackOff briefly on first sync.
       parameters:
         - name: api.image.tag
-          value: "81c63d736c33d9b3cd098a2eb27e71ff771bf3f0"
+          value: "c2c84d31804e56d9e0ff5761a245096365937cf9"
         - name: web.image.tag
-          value: "81c63d736c33d9b3cd098a2eb27e71ff771bf3f0"
+          value: "c2c84d31804e56d9e0ff5761a245096365937cf9"
   destination:
     server: https://kubernetes.default.svc
     namespace: homenews
