@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: homecal
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/autumnfallenwang/homecal.git
+    targetRevision: main
+    path: deploy/chart
+    helm:
+      releaseName: homecal
+      valueFiles:
+        - values.yaml
+      # GHA workflow (.github/workflows/build.yml `bump-arch-infra` job) rewrites
+      # BOTH api.image.tag and web.image.tag to the same commit SHA on every
+      # successful main build — a single yq expression bumps them atomically so
+      # ArgoCD rolls api + web together (the contract evolves in lockstep, esp.
+      # NEXT_PUBLIC_AUTH_URL which is baked into the web bundle at build time).
+      # Initial "latest" matches the chart defaults; the GHCR packages don't
+      # exist until the first build completes + D2 step 3 flips them public,
+      # so expect ImagePullBackOff briefly on first sync.
+      parameters:
+        - name: api.image.tag
+          value: "latest"
+        - name: web.image.tag
+          value: "latest"
+        # Migrate Job stays disabled until F1 creates homecal-secrets in the
+        # cluster. After F1: flip this to "true" and ArgoCD will run the Helm
+        # pre-install hook on next sync. For the Phase-19 initial cutover, the
+        # Job is also skipped because G5 pg_restore brings the schema along
+        # and G7 bootstraps __drizzle_migrations.
+        - name: migrate.enabled
+          value: "false"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: homecal
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
