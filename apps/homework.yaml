@@ -20,9 +20,9 @@ spec:
       # sync until the GHCR packages exist (and are made public).
       parameters:
         - name: api.image.tag
-          value: "323cbf8bfad8ed0ec288a767315f975341d6d09d"
+          value: "2219b0a927aed813e47b7e263c15681ae6541f60"
         - name: web.image.tag
-          value: "323cbf8bfad8ed0ec288a767315f975341d6d09d"
+          value: "2219b0a927aed813e47b7e263c15681ae6541f60"
         # Stays disabled until homework-secrets is created in-cluster
         # (homework repo: scripts/create-cluster-secret.sh). Flip to "true" so
         # ArgoCD runs the Helm pre-install migrate hook on the next sync.
