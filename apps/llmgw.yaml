@@ -18,7 +18,7 @@ spec:
       # until the first build completes — expect ImagePullBackOff briefly on first sync.
       parameters:
         - name: image.tag
-          value: "28c67f14cb5674a7cf51a9537cae156e027513be"
+          value: "c425d25b6c84aa1e5fd990b78ce7b31061a02067"
   destination:
     server: https://kubernetes.default.svc
     namespace: llmgw
