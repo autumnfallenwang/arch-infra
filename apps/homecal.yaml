@@ -23,9 +23,9 @@ spec:
       # so expect ImagePullBackOff briefly on first sync.
       parameters:
         - name: api.image.tag
-          value: "0145751ebc912020d329c088d2743278179f1fd8"
+          value: "ce36c72a0a30dd54784c18b0f3edbfb544e222ea"
         - name: web.image.tag
-          value: "0145751ebc912020d329c088d2743278179f1fd8"
+          value: "ce36c72a0a30dd54784c18b0f3edbfb544e222ea"
         # Migrate Job stays disabled until F1 creates homecal-secrets in the
         # cluster. After F1: flip this to "true" and ArgoCD will run the Helm
         # pre-install hook on next sync. For the Phase-19 initial cutover, the
