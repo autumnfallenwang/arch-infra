@@ -27,7 +27,7 @@ ingress:
   enabled: true
   ingressClassName: traefik
   hosts:
-    - grafana.arch.local
+    - grafana.arch.internal
   path: /
 
 # Default admin user is "admin"; password auto-generated, in secret `grafana`.
