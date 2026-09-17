@@ -23,9 +23,9 @@ spec:
       # so expect ImagePullBackOff briefly on first sync.
       parameters:
         - name: api.image.tag
-          value: "b966f6b69b5bcfe63c07f0b4d2386013ae915d52"
+          value: "a0dc0ce588f54e21fc15f40a86bf384500a91d22"
         - name: web.image.tag
-          value: "b966f6b69b5bcfe63c07f0b4d2386013ae915d52"
+          value: "a0dc0ce588f54e21fc15f40a86bf384500a91d22"
         # Enabled 2026-07-09: homecal-secrets exist and Phase-21 shipped migration
         # 0011 (digest_settings + users.receivesDailyDigest). ArgoCD now runs the
         # Helm pre-upgrade hook Job on each sync to auto-apply pending Drizzle
