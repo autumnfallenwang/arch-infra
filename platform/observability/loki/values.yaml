@@ -25,7 +25,7 @@ loki:
       - selector: '{namespace=~"kube-system|argocd|observability"}'
         priority: 1
         period: 72h               # 3 days — infra/platform noise
-      - selector: '{namespace=~"llmgw|homecal|homenews"}'
+      - selector: '{namespace=~"llmgw|homecal|homenews|homework|homeparentcontrol"}'
         priority: 2
         period: 720h              # 30 days — real apps (rules dormant until namespaces exist)
   compactor:
