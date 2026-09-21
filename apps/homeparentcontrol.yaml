@@ -71,3 +71,13 @@ spec:
     # automated:
     #   prune: true
     #   selfHeal: true
+
+    # ── Added as a SECOND commit, after the first manual sync was confirmed:
+    # db + web Running, the PreSync migrate hook applied 29 tables, api
+    # Running, and both ingress hosts answering.
+    #
+    # ⚠️ `prune: true` on a bad first render deletes whatever Argo thinks is
+    # surplus, which is exactly why it was not here from the outset.
+    automated:
+      prune: true
+      selfHeal: true
