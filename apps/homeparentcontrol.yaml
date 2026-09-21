@@ -52,7 +52,7 @@ spec:
         # sync before the database is created, which reads as a broken
         # deploy rather than a missing secret.
         - name: migrate.enabled
-          value: "false"
+          value: "true"
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
