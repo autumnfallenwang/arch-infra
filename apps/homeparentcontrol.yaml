@@ -44,9 +44,9 @@ spec:
         # image bakes NEXT_PUBLIC_API_URL at build time and the contract
         # evolves in lockstep (R9), so api and web must roll together.
         - name: api.image.tag
-          value: b5fc723b9b7d97458df9ce882551ef572e2c8288
+          value: 2c7b21f14beb5d3e6b27673e87396cb571b0aaec
         - name: web.image.tag
-          value: b5fc723b9b7d97458df9ce882551ef572e2c8288
+          value: 2c7b21f14beb5d3e6b27673e87396cb571b0aaec
         # ⚠️ Stays "false" until `homeparentcontrol-secrets` exists. A
         # pre-upgrade hook that cannot read DATABASE_URL fails the entire
         # sync before the database is created, which reads as a broken
