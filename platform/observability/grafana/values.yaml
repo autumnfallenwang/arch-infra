@@ -71,7 +71,7 @@ dashboards:
           ],
           "timezone": "browser",
           "schemaVersion": 39,
-          "version": 1,
+          "version": 2,
           "refresh": "1m",
           "time": {
             "from": "now-24h",
@@ -318,7 +318,31 @@ dashboards:
                   "unit": "ms"
                 },
                 "overrides": []
-              }
+              },
+              "transformations": [
+                {
+                  "id": "organize",
+                  "options": {
+                    "excludeByName": {
+                      "Time": true
+                    },
+                    "renameByName": {
+                      "Value #A": "average ms"
+                    }
+                  }
+                },
+                {
+                  "id": "sortBy",
+                  "options": {
+                    "sort": [
+                      {
+                        "field": "average ms",
+                        "desc": true
+                      }
+                    ]
+                  }
+                }
+              ]
             },
             {
               "id": 6,
