@@ -15,19 +15,16 @@ spec:
         - values.yaml
       # The GHA workflow (bump-arch-infra job) rewrites BOTH api.image.tag and
       # web.image.tag to the same commit SHA on every successful main build, so
-      # ArgoCD rolls api + web together. "latest" until the first build pushes
-      # SHA-tagged images — expect a brief ImagePullBackOff on the very first
-      # sync until the GHCR packages exist (and are made public).
+      # ArgoCD rolls api + web together. The images are public on GHCR (they
+      # inherit the public repo's visibility), so the cluster needs no pull secret.
       parameters:
         - name: api.image.tag
-          value: "746e04baa18bb62c610fc23ac33761aa06b70022"
+          value: "de9afc939eb62ee349a9f27de7855dcd31321bfe"
         - name: web.image.tag
-          value: "746e04baa18bb62c610fc23ac33761aa06b70022"
-        # homestorm-secrets is created before this Application is committed
-        # (scripts/create-cluster-secret.sh), so the migrate hook runs from the
-        # first sync, applying apps/api/drizzle/*.sql before the api starts.
+          value: "de9afc939eb62ee349a9f27de7855dcd31321bfe"
+        # Off: the api applies its migrations at boot (see deploy/chart/values.yaml).
         - name: migrate.enabled
-          value: "true"
+          value: "false"
   destination:
     server: https://kubernetes.default.svc
     namespace: homestorm
