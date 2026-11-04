@@ -19,9 +19,9 @@ spec:
       # inherit the public repo's visibility), so the cluster needs no pull secret.
       parameters:
         - name: api.image.tag
-          value: "644382e9310fdc80a2c7362f542efeb542d72d31"
+          value: "6ff28ebfcce85630670978bd9c225cb1fa7c8d40"
         - name: web.image.tag
-          value: "644382e9310fdc80a2c7362f542efeb542d72d31"
+          value: "6ff28ebfcce85630670978bd9c225cb1fa7c8d40"
         # Off: the api applies its migrations at boot (see deploy/chart/values.yaml).
         - name: migrate.enabled
           value: "false"
