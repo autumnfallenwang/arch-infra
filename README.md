@@ -28,6 +28,10 @@ What runs on the cluster. The apps' hostnames resolve through the router's DNS, 
 192.168.1.163. The two gateways have no login, so they have no Ingress. On arch, `/etc/hosts` points their full
 names at their pinned Service IPs. llmgw is for pods and arch; mcpgw is for the home apps.
 
+Loki's API has no login either, so it has no Ingress: use Grafana, or `http://loki.observability.svc.cluster.local:3100`
+from a pod or from arch. Its chart can't pin the Service IP, so if that Service is ever recreated, update arch's `/etc/hosts`
+line. A firewall rule on arch (mcpgw's `deploy/host/`) keeps other devices off the cluster's private ranges and Ollama.
+
 | Service | What it's for | URL | Repo |
 |---|---|---|---|
 | llmgw | **Models.** One place to reach LLMs: routing, logins, limits, usage | http://llmgw.llmgw.svc.cluster.local (arch and pods only) | [llm-gateway](https://github.com/autumnfallenwang/llm-gateway) |
