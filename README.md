@@ -24,12 +24,14 @@ apps/        # Argo CD Application CRs — central registry pointing at each app
 
 ## Services
 
-What runs on the cluster. Hostnames resolve through the router's DNS, one name at a time, to Traefik on 192.168.1.163.
+What runs on the cluster. The apps' hostnames resolve through the router's DNS, one name at a time, to Traefik on
+192.168.1.163. The two gateways have no login, so they have no Ingress: only pods and arch can reach them. On arch,
+`/etc/hosts` points their full names at their pinned Service IPs.
 
 | Service | What it's for | URL | Repo |
 |---|---|---|---|
-| llmgw | **Models.** One place to reach LLMs: routing, logins, limits, usage | http://llmgw.arch.internal | [llm-gateway](https://github.com/autumnfallenwang/llm-gateway) |
-| mcpgw | **Tools.** Web search and page reading over MCP, for apps and agent harnesses | http://mcpgw.arch.internal | [mcpgw](https://github.com/autumnfallenwang/mcpgw) |
+| llmgw | **Models.** One place to reach LLMs: routing, logins, limits, usage | http://llmgw.llmgw.svc.cluster.local (arch and pods only) | [llm-gateway](https://github.com/autumnfallenwang/llm-gateway) |
+| mcpgw | **Tools.** Web search and page reading over MCP, for apps and agent harnesses | http://mcpgw.mcpgw.svc.cluster.local (arch and pods only) | [mcpgw](https://github.com/autumnfallenwang/mcpgw) |
 | homestorm | Brainstorm with several models at once, with you as chair | http://homestorm.arch.internal | [homestorm](https://github.com/autumnfallenwang/homestorm) |
 | homecal | Smart family calendar | http://homecal.arch.internal | [homecal](https://github.com/autumnfallenwang/homecal) |
 | homenews | Personal AI news intelligence | http://homenews.arch.internal | [homenews](https://github.com/autumnfallenwang/homenews) |
