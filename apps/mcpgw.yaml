@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mcpgw
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/autumnfallenwang/mcpgw.git
+    targetRevision: main
+    path: deploy/chart
+    helm:
+      releaseName: mcpgw
+      valueFiles:
+        - values.yaml
+      # The images are public on GHCR (they inherit the public repo's visibility), so the cluster
+      # needs no pull secret.
+      parameters:
+        - name: image.tag
+          value: "db7c92c37e3a617b9a229cc9a2ac653a796fc076"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mcpgw
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
