@@ -22,6 +22,24 @@ apps/        # Argo CD Application CRs — central registry pointing at each app
 - **Sealed Secrets** — encrypted secrets safe to commit
 - **Loki + Grafana + Alloy** — centralized logs
 
+## Services
+
+What runs on the cluster. Hostnames resolve through the router's DNS, one name at a time, to Traefik on 192.168.1.163.
+
+| Service | What it's for | URL | Repo |
+|---|---|---|---|
+| llmgw | **Models.** One place to reach LLMs: routing, logins, limits, usage | http://llmgw.arch.internal | [llm-gateway](https://github.com/autumnfallenwang/llm-gateway) |
+| mcpgw | **Tools.** Web search and page reading over MCP, for apps and agent harnesses | http://mcpgw.arch.internal | [mcpgw](https://github.com/autumnfallenwang/mcpgw) |
+| homestorm | Brainstorm with several models at once, with you as chair | http://homestorm.arch.internal | [homestorm](https://github.com/autumnfallenwang/homestorm) |
+| homecal | Smart family calendar | http://homecal.arch.internal | [homecal](https://github.com/autumnfallenwang/homecal) |
+| homenews | Personal AI news intelligence | http://homenews.arch.internal | [homenews](https://github.com/autumnfallenwang/homenews) |
+| homework | School parent companion, moved from TeacherEase Parent Companion | http://homework.arch.internal | [homework](https://github.com/autumnfallenwang/homework) |
+| homeparentcontrol | Parental control for a child's Mac | http://homeparentcontrol.arch.internal | [homeparentcontrol](https://github.com/autumnfallenwang/homeparentcontrol) |
+| Argo CD | Syncs the cluster to this repo | http://argocd.arch.internal | this repo |
+| Grafana, Loki | Logs | http://grafana.arch.internal | this repo |
+
+**The split:** models live in llmgw, tools live in mcpgw, and when to use them lives in each app.
+
 ## Adding a new app
 
 1. App lives in its own repo with `deploy/` folder containing Helm chart or manifests.
