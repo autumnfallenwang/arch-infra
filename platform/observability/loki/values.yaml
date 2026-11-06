@@ -66,7 +66,7 @@ minio:
 gateway:
   enabled: false
 
-# Off: Loki has no login, and its API returns every app's logs. Use Grafana, or this API from a pod or from arch at
-# http://loki.observability.svc.cluster.local:3100.
+# Off: Loki has no login, and its API returns every app's logs. Use Grafana. Pods use the API at
+# http://loki.observability.svc.cluster.local:3100. From arch: kubectl -n observability port-forward svc/loki 3100:3100.
 ingress:
   enabled: false
