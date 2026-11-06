@@ -25,8 +25,8 @@ apps/        # Argo CD Application CRs — central registry pointing at each app
 ## Services
 
 What runs on the cluster. The apps' hostnames resolve through the router's DNS, one name at a time, to Traefik on
-192.168.1.163. The two gateways have no login, so they have no Ingress. llmgw is for pods and arch, where `/etc/hosts`
-points its full name at its pinned Service IP. mcpgw is for home apps only.
+192.168.1.163. The two gateways have no login, so they have no Ingress. On arch, `/etc/hosts` points their full
+names at their pinned Service IPs. llmgw is for pods and arch; mcpgw is for the home apps.
 
 | Service | What it's for | URL | Repo |
 |---|---|---|---|
