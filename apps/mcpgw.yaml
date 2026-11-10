@@ -17,7 +17,7 @@ spec:
       # needs no pull secret.
       parameters:
         - name: image.tag
-          value: "12bfcbbf93c7b685ebc4bf60882c586c4782cb16"
+          value: "6838c849c673068f71285a90a68935ad2613bfbd"
   destination:
     server: https://kubernetes.default.svc
     namespace: mcpgw
