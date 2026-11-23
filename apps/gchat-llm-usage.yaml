@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gchat-llm-usage
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/autumnfallenwang/gchat-llm-usage.git
+    targetRevision: main
+    path: deploy/chart
+    helm:
+      releaseName: gchat-llm-usage
+      valueFiles:
+        - values.yaml
+      # The image is public on GHCR (it inherits the public repo's visibility), so the cluster
+      # needs no pull secret.
+      parameters:
+        - name: image.tag
+          value: "e7c594f2cb8907f926c8b650d7f93b3ad424ab16"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gchat-llm-usage
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
