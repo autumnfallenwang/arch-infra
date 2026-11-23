@@ -17,7 +17,7 @@ spec:
       # needs no pull secret.
       parameters:
         - name: image.tag
-          value: "1273deee70460ae8b6ac9a2c1d5bc74852d73a87"
+          value: "3b743fe63015b8a6ffe467ee5c30be587a756ddb"
   destination:
     server: https://kubernetes.default.svc
     namespace: gchat-llm-usage
